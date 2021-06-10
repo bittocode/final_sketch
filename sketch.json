@@ -1,0 +1,16 @@
+{
+  "version": "1.3.6",
+  "revision": 41,
+  "count": {
+    "sketches": 1,
+    "folders": 0
+  },
+  "structure": [
+    {
+      "type": "sketch",
+      "name": "3D_shape_pixelsorting_final",
+      "mod": 1623321639569,
+      "code": "/*coded by aniekeme noack */\n/*mentored by ted davis */\n/*glitch final 2021 – digital culture – the basel school of design, hgk fhnw*/\n\nlet libs = ['https://cdn.jsdelivr.net/npm/p5.glitch@latest/p5.glitch.js'];\nlet glitch, img;\n\nlet imgs = [] //empty array\nlet imgsIndex = 0\n\nfunction preload() {\n\timgs.push(loadImage('data/images/jellyfish.jpeg'));\n\t//imgs.push(loadImage('data/images/srandom200.png'));\n\timgs.push(loadImage('data/images/srandom800.png'));\n\timgs.push(loadImage('data/images/skytree.jpg'));\n\t//imgs.push(loadImage('data/images/sedges10.png'));\n\timgs.push(loadImage('data/images/sedges12.png'));\n}\n\nfunction setup() {\n\tcreateCanvas(windowWidth, windowHeight, WEBGL);\n\n\timageMode(CENTER); // draw center out \n\tframeRate(24); // slow things down \n}\n\nfunction draw() {\n\tbackground(31, 168, 208);\n\tnoStroke();\n\n\ttexture(imgs[imgsIndex]); //image applied to my object\n\torbitControl(5); //move object with mouse pressed\n\trotateY(radians(frameCount / 2)); //positive rotation\n\t//sphere(220, 50, 50);\n\tbox(height / 3.5);\n\t//cone(250);\n\n\tif(mouseIsPressed) {\n\t\timgsIndex = floor(random(imgs.length)); //grab a random image with the texture\n\t} else {\n\t\timgsIndex = 0;\n\t}\n\n}\n\nfunction keyPressed() {\n\tif(key == \"S\") {\n\t\tsave(\"3D-shape-pixelsort.png\");\n\t\t//glitch.saveImage();\n\t\t//glitch.saveSafe();\n\t\t//glitch.saveCanvas()\n\t}\n}"
+    }
+  ]
+}

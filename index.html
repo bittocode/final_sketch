@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>3D_shape_pixelsorting_final</title>
+	<meta charset="utf-8">
+	<!-- Compiled w/ P5LIVE, http://github.com/ffd8/p5live -->
+	<style type="text/css">
+		body{
+			margin:0;
+			overflow:hidden;
+		}
+		canvas{
+			position:fixed;
+			top:0;
+			left:0;
+			z-index:-1;
+			width:100vw;
+			height:100vh;
+			margin:0;
+		}
+	</style>
+	<script type="text/javascript">
+		// eco-mode = only render if window focused
+		window.onblur = function () {
+			noLoop();
+		};
+		window.onfocus = function () {
+			loop();
+		};
+	</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/addons/p5.sound.min.js"></script> -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5.glitch@latest/p5.glitch.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+//3D_shape_pixelsorting_final
+
+/* CUSTOM FUNCTIONS FOR P5LIVE */
+// keep fullscreen if window resized
+function windowResized() {
+	resizeCanvas(windowWidth, windowHeight);
+}
+
+// custom ease function
+function ease(iVal, oVal, eVal){
+	return oVal += (iVal - oVal) * eVal;
+}
+
+// processing compatibility
+function println(msg){
+	print(msg);
+}
+
+
+/*coded by aniekeme noack */
+/*mentored by ted davis */
+/*glitch final 2021 – digital culture – the basel school of design, hgk fhnw*/
+
+let libs = ['https://cdn.jsdelivr.net/npm/p5.glitch@latest/p5.glitch.js'];
+let glitch, img;
+
+let imgs = [] //empty array
+let imgsIndex = 0
+
+function preload() {
+	imgs.push(loadImage('data/images/jellyfish.jpeg'));
+	//imgs.push(loadImage('data/images/srandom200.png'));
+	imgs.push(loadImage('data/images/srandom800.png'));
+	imgs.push(loadImage('data/images/skytree.jpg'));
+	//imgs.push(loadImage('data/images/sedges10.png'));
+	imgs.push(loadImage('data/images/sedges12.png'));
+}
+
+function setup() {
+	createCanvas(windowWidth, windowHeight, WEBGL);
+
+	imageMode(CENTER); // draw center out 
+	frameRate(24); // slow things down 
+}
+
+function draw() {
+	background(31, 168, 208);
+	noStroke();
+
+	texture(imgs[imgsIndex]); //image applied to my object
+	orbitControl(5); //move object with mouse pressed
+	rotateY(radians(frameCount / 2)); //positive rotation
+	//sphere(220, 50, 50);
+	box(height / 3.5);
+	//cone(250);
+
+	if(mouseIsPressed) {
+		imgsIndex = floor(random(imgs.length)); //grab a random image with the texture
+	} else {
+		imgsIndex = 0;
+	}
+
+}
+
+function keyPressed() {
+	if(key == "S") {
+		save("3D-shape-pixelsort.png");
+		//glitch.saveImage();
+		//glitch.saveSafe();
+		//glitch.saveCanvas()
+	}
+}
+</script>
+
+</body>
+</html>
